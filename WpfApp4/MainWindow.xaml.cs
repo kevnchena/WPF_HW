@@ -13,20 +13,8 @@ namespace WpfApp4
         public MainWindow()
         {
             InitializeComponent();
-            //檢查是否為三角形
-            trianglesCheck(triangles);
-
         }
 
-        private bool trianglesCheck(List<Triangle> mytriangles)
-        {   
-            bool answer = false;
-            foreach (var item in mytriangles)
-            {
-                answer = item.Side1 + item.Side2 > item.Side3 && item.Side1 + item.Side3 > item.Side2 && item.Side2 + item.Side3 > item.Side1;
-            }
-            return answer;
-        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -57,10 +45,6 @@ namespace WpfApp4
                 Side3 = double.Parse(textbox3.Text),
             }) ;
 
-
-
-
-
             foreach (var item in triangles)
             {
 
@@ -80,11 +64,7 @@ namespace WpfApp4
                     textblock.Text += "經過計算後，有兩邊的和小於第三邊\n";
                 }
                 textblock.Text += $"最終你的所存入的數據分別為:\n邊1 = {item.Side1}  邊2 = {item.Side2}  邊3 = {item.Side3}  布林值為 = {item.Comfirm} ";
-
-
-
             }
-            
         }
 
         private void result_botton(object sender, RoutedEventArgs e)
