@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Drawing;
 
 namespace WpfApp4
 {
@@ -35,11 +23,7 @@ namespace WpfApp4
             bool answer = false;
             foreach (var item in mytriangles)
             {
-                if ((item.Side1) * (item.Side1)+(item.Side2) * (item.Side2) == item.Side3* item.Side3) answer = true;
-                else if ((item.Side1) * (item.Side1)+(item.Side3)*(item.Side3) == item.Side2* item.Side2) answer = true;
-                else if ((item.Side2) * (item.Side2)+(item.Side3)*(item.Side3) == item.Side1* item.Side1) answer = true;
-                else answer = false;
-
+                answer = item.Side1 + item.Side2 > item.Side3 && item.Side1 + item.Side3 > item.Side2 && item.Side2 + item.Side3 > item.Side1;
             }
             return answer;
         }
@@ -71,7 +55,6 @@ namespace WpfApp4
                 Side1 = double.Parse(textbox1.Text),
                 Side2 = double.Parse(textbox2.Text),
                 Side3 = double.Parse(textbox3.Text),
-                Comfirm = false
             }) ;
 
 
@@ -80,23 +63,36 @@ namespace WpfApp4
 
             foreach (var item in triangles)
             {
-                item.Comfirm= trianglesCheck(triangles); ; //判斷是否為三角形的函數
+
+                item.Comfirm = item.Side1 + item.Side2 > item.Side3 && item.Side1 + item.Side3 > item.Side2 && item.Side2 + item.Side3 > item.Side1; //判斷是否為三角形的函數
+                
+                textblock.Text = $"你所輸入的三個邊長分別為{item.Side1}, {item.Side2}, {item.Side3}\n";
                 if (item.Comfirm == true)
                 {
                     labelbar.Content = $"邊長{item.Side1},{item.Side2},{item.Side3} 可構成三角形";
                     labelbar.Background = System.Windows.Media.Brushes.Green;
-
+                    textblock.Text += "經過計算後，任意兩邊的和都大於第三邊\n";
                 }
                 else
                 {
                     labelbar.Content = $"邊長{item.Side1},{item.Side2},{item.Side3} 不可構成三角形";
                     labelbar.Background = System.Windows.Media.Brushes.Red;
+                    textblock.Text += "經過計算後，有兩邊的和小於第三邊\n";
                 }
-                
-                
+                textblock.Text += $"最終你的所存入的數據分別為:\n邊1 = {item.Side1}  邊2 = {item.Side2}  邊3 = {item.Side3}  布林值為 = {item.Comfirm} ";
 
 
 
+            }
+            
+        }
+
+        private void result_botton(object sender, RoutedEventArgs e)
+        {
+            textblock.Text = "";
+            for (int i = 0; i < triangles.Count; i++) 
+            {
+                textblock.Text += $"第{i+1}個三角形: 邊1 = {triangles[i].Side1} 邊2 = {triangles[i].Side2} 邊3 = {triangles[i].Side3} 布林值為 = {triangles[i].Comfirm}\n";
             }
         }
     }

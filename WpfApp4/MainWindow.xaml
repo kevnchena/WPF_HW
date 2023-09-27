@@ -15,8 +15,9 @@
             <Label Content="邊3 :" Width="56" Height="35" VerticalContentAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="Cambria"/>
             <TextBox x:Name="textbox3" Width="120" TextChanged="TextBox_TextChanged" FontSize="16" FontWeight="Bold" FontFamily="Calibri" Height="23"/>
         </StackPanel>
-        <Button x:Name="botton" Content="Button" Margin="661,53,82,509" Click="Botton_Click" />
-        <Label x:Name="labelbar" Margin="0,118,0,0" VerticalAlignment="Top" Width="238" Height="35" Content="你好" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Yu Gothic UI" FontWeight="Bold" Background="White"/>
-        <TextBox x:Name="textbox" HorizontalAlignment="Left" Margin="30,190,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="733" Height="378"/>
+        <Button x:Name="botton" Content="計算" Margin="661,53,82,509" Click="Botton_Click" />
+        <Label x:Name="labelbar" Margin="0,121,0,0" VerticalAlignment="Top" Width="360" Height="35" Content="你好" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Yu Gothic UI" FontWeight="Bold" Background="White"/>
+        <TextBlock x:Name="textblock" HorizontalAlignment="Center" Margin="0,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="374" Width="680" Background="#FFF4F5E6" FontSize="16" FontFamily="Cascadia Code"/>
+        <Button x:Name="Allesult" Content="查看所有結果" HorizontalAlignment="Left" Margin="661,123,0,0" VerticalAlignment="Top" Height="42" Width="102" Click="result_botton"/>
     </Grid>
 </Window>
