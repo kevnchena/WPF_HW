@@ -9,7 +9,7 @@ namespace WpfApp4
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Triangle> triangles = new List<Triangle>();
+        List<Triangle> triangles = new List<Triangle>();
         public MainWindow()
         {
             InitializeComponent();
@@ -38,33 +38,42 @@ namespace WpfApp4
 
         private void Botton_Click(object sender, RoutedEventArgs e)
         {
-            triangles.Add(new Triangle()
+            if (string.IsNullOrEmpty(textbox1.Text) || string.IsNullOrEmpty(textbox2.Text) || string.IsNullOrEmpty(textbox3.Text))
             {
-                Side1 = double.Parse(textbox1.Text),
-                Side2 = double.Parse(textbox2.Text),
-                Side3 = double.Parse(textbox3.Text),
-            }) ;
-
-            foreach (var item in triangles)
-            {
-
-                item.Comfirm = item.Side1 + item.Side2 > item.Side3 && item.Side1 + item.Side3 > item.Side2 && item.Side2 + item.Side3 > item.Side1; //判斷是否為三角形的函數
-                
-                textblock.Text = $"你所輸入的三個邊長分別為{item.Side1}, {item.Side2}, {item.Side3}\n";
-                if (item.Comfirm == true)
-                {
-                    labelbar.Content = $"邊長{item.Side1},{item.Side2},{item.Side3} 可構成三角形";
-                    labelbar.Background = System.Windows.Media.Brushes.Green;
-                    textblock.Text += "經過計算後，任意兩邊的和都大於第三邊\n";
-                }
-                else
-                {
-                    labelbar.Content = $"邊長{item.Side1},{item.Side2},{item.Side3} 不可構成三角形";
-                    labelbar.Background = System.Windows.Media.Brushes.Red;
-                    textblock.Text += "經過計算後，有兩邊的和小於第三邊\n";
-                }
-                textblock.Text += $"最終你的所存入的數據分別為:\n邊1 = {item.Side1}  邊2 = {item.Side2}  邊3 = {item.Side3}  布林值為 = {item.Comfirm} ";
+                MessageBox.Show($"有數值尚未輸入!");
             }
+            else
+            {
+                triangles.Add(new Triangle()
+                {
+                    Side1 = double.Parse(textbox1.Text),
+                    Side2 = double.Parse(textbox2.Text),
+                    Side3 = double.Parse(textbox3.Text),
+                });
+
+
+                foreach (var item in triangles)
+                {
+
+                    item.Comfirm = item.Side1 + item.Side2 > item.Side3 && item.Side1 + item.Side3 > item.Side2 && item.Side2 + item.Side3 > item.Side1; //判斷是否為三角形的函數
+
+                    textblock.Text = $"你所輸入的三個邊長分別為{item.Side1}, {item.Side2}, {item.Side3}\n";
+                    if (item.Comfirm == true)
+                    {
+                        labelbar.Content = $"邊長{item.Side1},{item.Side2},{item.Side3} 可構成三角形";
+                        labelbar.Background = System.Windows.Media.Brushes.Green;
+                        textblock.Text += "經過計算後，任意兩邊的和都大於第三邊\n";
+                    }
+                    else
+                    {
+                        labelbar.Content = $"邊長{item.Side1},{item.Side2},{item.Side3} 不可構成三角形";
+                        labelbar.Background = System.Windows.Media.Brushes.Red;
+                        textblock.Text += "經過計算後，有兩邊的和小於第三邊\n";
+                    }
+                    textblock.Text += $"最終你的所存入的數據分別為:\n邊1 = {item.Side1}  邊2 = {item.Side2}  邊3 = {item.Side3}  布林值為 = {item.Comfirm} ";
+                }
+            }
+
         }
 
         private void result_botton(object sender, RoutedEventArgs e)
